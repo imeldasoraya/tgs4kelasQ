@@ -30,7 +30,7 @@ void inputData() {
     cin >> n;
     for (int i = 0; i < n; i++) {
         cout << "Masukkan data ke-" << (i + 1) << ": ";
-        cin >> dataArray[i]; // Menggunakan `dataArray` (global)
+        cin >> dataArray[i]; 
     }
     cout << "Data berhasil dimasukkan!" << endl;
     getch();
@@ -41,7 +41,7 @@ void tampilkanData() {
     system("cls");
     cout << "Data saat ini: ";
     for (int i = 0; i < n; i++) {
-        cout << dataArray[i] << " "; // Menggunakan `dataArray` (global)
+        cout << dataArray[i] << " "; 
     }
     cout << endl;
     getch();
@@ -51,7 +51,7 @@ void tampilkanData() {
 void sortingAsc() {
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
-            if (dataArray[j] > dataArray[j + 1]) { // Menggunakan `dataArray` (global)
+            if (dataArray[j] > dataArray[j + 1]) { 
                 tukar(&dataArray[j], &dataArray[j + 1]);
             }
         }
@@ -64,7 +64,7 @@ void sortingAsc() {
 void sortingDsc() {
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
-            if (dataArray[j] < dataArray[j + 1]) { // Menggunakan `dataArray` (global)
+            if (dataArray[j] < dataArray[j + 1]) { 
                 tukar(&dataArray[j], &dataArray[j + 1]);
             }
         }
