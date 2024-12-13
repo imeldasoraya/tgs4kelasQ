@@ -2,128 +2,120 @@
 #include <conio.h>
 using namespace std;
 
-int arrdata[100];
-int n;
+int data[100];
+int n; //untuk jumlah data
 
-void masukkanData();
-void tampilkanData();
-void sortingAsc();
-void sortingDsc();
-void tukar(int *a, int *b);
+void dMenu(){
+system("cls");
+cout<<"Aplikasi Sorting Bubble"<<"\n";       
+cout<<"1. Masukkan data"<<"\n";            
+cout<<"2. Tampilkan data"<<"\n";            
+cout<<"3. Sorting asc"<<"\n";           
+cout<<"4. Sorting dsc"<<"\n";            
+cout<<"5. Exit"<<"\n";           
+cout<<"Masukan angka :";        
+}
 
-int main()
-{
-  char pl;
-  cout << "Masukkan jumlah data (maksimal 100): ";
-  cin >> n; // Mengatur jumlah data di sini
-  if (n > 100)
-    n = 5; // Batasi jumlah data maksimal 100
+void tukar(int *a,int *b){
+  int t=*a;
+  *a=*b;
+  *b=t;
+}
 
-  do
-  {
-
-    system("cls");
-    cout << "Aplikasi sorting bubble" << "\n";
-    cout << "1. masukkan data" << "\n";
-    cout << "2. tampilkan data" << "\n";
-    cout << "3. sorting asc" << "\n";
-    cout << "4. sorting dsc" << "\n";
-    cout << "5. Exit" << "\n";
-    cout << "Masukan angka :";
-    pl = getch();
-
-    switch (pl)
-    {
-    case '1':
-      /* code */
-      masukkanData();
-      break;
-    case '2':
-      tampilkanData();
-      /* code */
-      break;
-    case '3':
-      sortingAsc();
-      /* code */
-      break;
-    case '4':
-      sortingDsc();
-      /* code */
-      break;
-    case '5':
-      cout << "Terima kasih.\n";
-      /* code */
-      break;
-
-    default:
-      system("cls");
-      cout << "Pilihan Tidak Tersedia";
-      getch();
-      break;
+void tampilkanData(int data[], int n) {
+    if (n > 0) {
+        cout << "Data saat ini:\n";
+        for (int i = 0; i < n; i++) {
+            cout << "Data ke-" << (i + 1) << ": " << data[i] << "\n";
+        }
+    } else {
+        cout << "Data kosong. Masukkan data terlebih dahulu!";
     }
-
-  } while (pl != '5');
-  return 0;
 }
 
-void masukkanData()
-{
-  system("cls");
-  for (int i = 0; i < n; i++)
-  {
-    cout << "Masukkan data ke-" << (i + 1) << ": ";
-    cin >> arrdata[i];
-  }
-  cout << "Data berhasil dimasukkan.\n";
-  getch();
-}
-
-void tampilkanData()
-{
-  system("cls");
-  cout << "Data yang dimasukkan:\n";
-  for (int i = 0; i < n; i++)
-  {
-    cout << arrdata[i] << " ";
-  }
-  cout << "\n";
-  getch();
-}
-void tukar(int *a, int *b)
-{
-  int t = *a;
-  *a = *b;
-  *b = t;
-}
-
-void sortingAsc()
-{
-  for (int i = 0; i < n - 1; i++)
-  {
-    for (int j = 0; j < n - i - 1; j++)
-    {
-      if (arrdata[j] > arrdata[j + 1])
-      {
-        tukar(&arrdata[j], &arrdata[j + 1]);
-      }
+void sortingAscending(int data[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (data[j] > data[j + 1]) {
+                tukar(&data[j], &data[j + 1]);
+            }
+        }
     }
-  }
-  cout << "Data berhasil diurutkan secara ascending.\n";
-  getch();
+    cout << "Data berhasil diurutkan secara ascending!";
 }
 
-void sortingDsc()
-{
-  for (int i = 0; i < n - 1; i++)
-  {
-    for (int j = 0; j < n - i - 1; j++)
-    {
-      if (arrdata[j] < arrdata[j + 1])
-      {
-        tukar(&arrdata[j], &arrdata[j + 1]);
-      }
+void sortingDescending(int data[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (data[j] < data[j + 1]) {
+                tukar(&data[j], &data[j + 1]);
+            }
+        }
     }
-  }
-  cout << "Data berhasil diurutkan secara descending.\n";
-  getch();
+    cout << "Data berhasil diurutkan secara descending!";
+}
+
+int main() {
+    int data[100];
+    char pl;
+
+    do {
+        dMenu();
+        pl = getch();   
+
+        switch (pl) {
+            case '1': {
+                system("cls");
+                cout << "Masukkan jumlah data (1-100): ";
+                cin >> n;
+                if (n > 0 && n <= 100) {
+                    cout << "Masukkan " << n << " angka:\n";
+                    for (int i = 0; i < n; i++) {
+                        cout << "Data ke-" << (i + 1) << ": ";
+                        cin >> data[i];
+                    }
+                    cout << "\nData berhasil dimasukkan!";
+                } else {
+                    cout << "Jumlah data tidak valid. Harus antara 1-100.";
+                }
+                getch();
+                break;
+            }
+            case '2': {
+                          system("cls");
+                          tampilkanData(data, n);
+                          getch();
+                          break;
+                      }
+            case '3': {
+                          system("cls");
+                          if (n > 0) {
+                              sortingAscending(data, n);
+                          } else {
+                              cout << "Data kosong. Masukkan data terlebih dahulu!";
+                          }
+                          getch();
+                          break;
+                      }
+            case '4': {
+                system("cls");
+                if (n > 0) {
+                    sortingDescending(data, n);
+                } else {
+                    cout << "Data kosong. Masukkan data terlebih dahulu!";
+                }
+                getch();
+                break;
+            }
+            case '5':
+                break;
+            default:
+                system("cls");
+                cout << "Pilihan Tidak Tersedia";
+                getch();
+                break;
+        }
+    } while (pl != '5');
+
+    return 0;
 }
