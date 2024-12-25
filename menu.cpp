@@ -1,17 +1,29 @@
 #include <iostream>
+#include <string>
 #include <conio.h>
 using namespace std;
 
 int data[100];
-int n; 
+int n; //untuk jumlah data
+
+struct mahasiswa {
+string nim;
+string nama;
+string alamat;
+float ipk;
+};
+
+mahasiswa sikc[30];
+
+int pos=-1;
 
 void dMenu(){
 system("cls");
-cout<<"Aplikasi Sorting Bubble"<<"\n";       
+cout<<"Aplikasi kelasQ"<<"\n";       
 cout<<"1. Masukkan data"<<"\n";            
 cout<<"2. Tampilkan data"<<"\n";            
-cout<<"3. Sorting asc"<<"\n";           
-cout<<"4. Sorting dsc"<<"\n";            
+cout<<"3. Perbaikan Data"<<"\n";           
+cout<<"4. Hapus Data"<<"\n";            
 cout<<"5. Exit"<<"\n";           
 cout<<"Masukan angka :";        
 }
@@ -65,22 +77,19 @@ int main() {
 
         switch (pl) {
             case '1': {
+                pos++;
                 system("cls");
-                cout << "Masukkan jumlah data (1-100): ";
-                cin >> n;
-                if (n > 0 && n <= 100) {
-                    cout << "Masukkan " << n << " angka:\n";
-                    for (int i = 0; i < n; i++) {
-                        cout << "Data ke-" << (i + 1) << ": ";
-                        cin >> data[i];
-                    }
-                    cout << "\nData berhasil dimasukkan!";
-                } else {
-                    cout << "Jumlah data tidak valid. Harus antara 1-100.";
+                fflush(stdin);
+                cout << "masukan nim: ";
+                getline (cin, sikc[pos].nim);
+                cout << "masukan nama: ";
+                getline (cin, sikc[pos].nama);
+                cout << "masukan alamat: ";
+                getline (cin, sikc[pos].alamat);
+                cout << "masukan ipk: ";
+                cin >> sikc[pos].ipk;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 }
-                getch();
-                break;
-            }
             case '2': {
                           system("cls");
                           tampilkanData(data, n);
