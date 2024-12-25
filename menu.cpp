@@ -3,7 +3,7 @@
 using namespace std;
 
 int data[100];
-int n; 
+int n; //untuk jumlah data
 
 void dMenu(){
 system("cls");
