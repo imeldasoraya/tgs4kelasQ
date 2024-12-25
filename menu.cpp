@@ -39,6 +39,19 @@ cout << sikc[p].nim<<" , "<< sikc[p].nama<<" , "<< sikc[p].alamat<<" , "<<
 sikc[p].ipk<<endl;
 }
 
+void perbaikanData(int p)
+{
+system("cls");
+fflush(stdin);
+cout << "masukan nama: ";
+getline (cin, sikc[p].nama);
+cout << "masukan alamat: ";
+getline (cin, sikc[p].alamat);
+cout << "masukan ipk: ";
+cin >> sikc[p].ipk;
+cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
 void sortingAscending(int data[], int n) {
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
@@ -92,11 +105,7 @@ int main() {
                       }
             case '3': {
                           system("cls");
-                          if (p > 0) {
-                              sortingAscending(data, p);
-                          } else {
-                              cout << "Data kosong. Masukkan data terlebih dahulu!";
-                          }
+                          perbaikanData(p);
                           getch();
                           break;
                       }
