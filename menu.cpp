@@ -3,9 +3,6 @@
 #include <conio.h>
 using namespace std;
 
-int data[100];
-int p; //untuk jumlah data
-
 struct mahasiswa {
 string nim;
 string nama;
@@ -28,54 +25,66 @@ cout<<"5. Exit"<<"\n";
 cout<<"Masukan angka :";        
 }
 
-void tukar(int *a,int *b){
-  int t=*a;
-  *a=*b;
-  *b=t;
-}
-
-void tampilkanData(int p){
-cout << sikc[p].nim<<" , "<< sikc[p].nama<<" , "<< sikc[p].alamat<<" , "<<
-sikc[p].ipk<<endl;
-}
-
-void perbaikanData(int p)
-{
-system("cls");
-fflush(stdin);
-cout << "masukan nama: ";
-getline (cin, sikc[p].nama);
-cout << "masukan alamat: ";
-getline (cin, sikc[p].alamat);
-cout << "masukan ipk: ";
-cin >> sikc[p].ipk;
-cin.ignore(numeric_limits<streamsize>::max(), '\n');
-}
-
-void sortingAscending(int data[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
-            if (data[j] > data[j + 1]) {
-                tukar(&data[j], &data[j + 1]);
-            }
-        }
+void tampilkanData(){
+    for (int i = 0; i <= pos; i++) {
+        cout << i+1 << ". " << sikc[i].nim << " , " << sikc[i].nama << " , " << sikc[i].alamat << " , " << sikc[i].ipk << endl;
     }
-    cout << "Data berhasil diurutkan secara ascending!";
 }
 
-void sortingDescending(int data[], int n) {
-    for (int i = 0; i < n - 1; i++) {
-        for (int j = 0; j < n - i - 1; j++) {
-            if (data[j] < data[j + 1]) {
-                tukar(&data[j], &data[j + 1]);
-            }
-        }
+void masukanData(){
+    pos++;
+    system("cls");
+    fflush(stdin);
+    cout << "masukan nim: ";
+    getline (cin, sikc[pos].nim);
+    cout << "masukan nama: ";
+    getline (cin, sikc[pos].nama);
+    cout << "masukan alamat: ";
+    getline (cin, sikc[pos].alamat);
+    cout << "masukan ipk: ";
+    cin >> sikc[pos].ipk;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+void perbaikanData(){
+    int idx;
+    tampilkanData();
+    cout << "Masukkan nomor data yang ingin diperbaiki: ";
+    cin >> idx;
+    idx--;
+    if (idx >= 0 && idx <= pos) {
+        system("cls");
+        fflush(stdin);
+        cout << "masukan nama: ";
+        getline (cin, sikc[idx].nama);
+        cout << "masukan alamat: ";
+        getline (cin, sikc[idx].alamat);
+        cout << "masukan ipk: ";
+        cin >> sikc[idx].ipk;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    } else {
+        cout << "Nomor tidak valid!" << endl;
     }
-    cout << "Data berhasil diurutkan secara descending!";
+}
+
+void hapusData() {
+    int idx;
+    tampilkanData();
+    cout << "Masukkan nomor data yang ingin dihapus: ";
+    cin >> idx;
+    idx--;
+    if (idx >= 0 && idx <= pos) {
+        for (int i = idx; i < pos; i++) {
+            sikc[i] = sikc[i + 1];
+        }
+        pos--;
+        cout << "Data berhasil dihapus!" << endl;
+    } else {
+        cout << "Nomor tidak valid!" << endl;
+    }
 }
 
 int main() {
-    int data[100];
     char pl;
 
     do {
@@ -84,38 +93,24 @@ int main() {
 
         switch (pl) {
             case '1': {
-                pos++;
-                system("cls");
-                fflush(stdin);
-                cout << "masukan nim: ";
-                getline (cin, sikc[pos].nim);
-                cout << "masukan nama: ";
-                getline (cin, sikc[pos].nama);
-                cout << "masukan alamat: ";
-                getline (cin, sikc[pos].alamat);
-                cout << "masukan ipk: ";
-                cin >> sikc[pos].ipk;
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                }
+                masukanData();
+                break;
+            }
             case '2': {
-                          system("cls");
-                          tampilkanData(p);
-                          getch();
-                          break;
-                      }
+                system("cls");
+                tampilkanData();
+                getch();
+                break;
+            }
             case '3': {
-                          system("cls");
-                          perbaikanData(p);
-                          getch();
-                          break;
-                      }
+                system("cls");
+                perbaikanData();
+                getch();
+                break;
+            }
             case '4': {
                 system("cls");
-                if (p > 0) {
-                    sortingDescending(data, p);
-                } else {
-                    cout << "Data kosong. Masukkan data terlebih dahulu!";
-                }
+                hapusData();
                 getch();
                 break;
             }
