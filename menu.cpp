@@ -4,7 +4,7 @@
 using namespace std;
 
 int data[100];
-int n; //untuk jumlah data
+int p; //untuk jumlah data
 
 struct mahasiswa {
 string nim;
@@ -22,8 +22,8 @@ system("cls");
 cout<<"Aplikasi kelasQ"<<"\n";       
 cout<<"1. Masukkan data"<<"\n";            
 cout<<"2. Tampilkan data"<<"\n";            
-cout<<"3. Perbaikan Data"<<"\n";           
-cout<<"4. Hapus Data"<<"\n";            
+cout<<"3. Perbaikan data"<<"\n";           
+cout<<"4. Hapus data"<<"\n";            
 cout<<"5. Exit"<<"\n";           
 cout<<"Masukan angka :";        
 }
@@ -34,15 +34,9 @@ void tukar(int *a,int *b){
   *b=t;
 }
 
-void tampilkanData(int data[], int n) {
-    if (n > 0) {
-        cout << "Data saat ini:\n";
-        for (int i = 0; i < n; i++) {
-            cout << "Data ke-" << (i + 1) << ": " << data[i] << "\n";
-        }
-    } else {
-        cout << "Data kosong. Masukkan data terlebih dahulu!";
-    }
+void tampilkanData(int p){
+cout << sikc[p].nim<<" , "<< sikc[p].nama<<" , "<< sikc[p].alamat<<" , "<<
+sikc[p].ipk<<endl;
 }
 
 void sortingAscending(int data[], int n) {
@@ -92,14 +86,14 @@ int main() {
                 }
             case '2': {
                           system("cls");
-                          tampilkanData(data, n);
+                          tampilkanData(p);
                           getch();
                           break;
                       }
             case '3': {
                           system("cls");
-                          if (n > 0) {
-                              sortingAscending(data, n);
+                          if (p > 0) {
+                              sortingAscending(data, p);
                           } else {
                               cout << "Data kosong. Masukkan data terlebih dahulu!";
                           }
@@ -108,8 +102,8 @@ int main() {
                       }
             case '4': {
                 system("cls");
-                if (n > 0) {
-                    sortingDescending(data, n);
+                if (p > 0) {
+                    sortingDescending(data, p);
                 } else {
                     cout << "Data kosong. Masukkan data terlebih dahulu!";
                 }
